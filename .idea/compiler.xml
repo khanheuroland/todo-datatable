@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="todo" />
+        <module name="todo-datatable" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="todo" target="1.8" />
+      <module name="todo-datatable" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

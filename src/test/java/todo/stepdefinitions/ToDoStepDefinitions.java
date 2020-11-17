@@ -44,13 +44,13 @@ public class ToDoStepDefinitions {
     @Then("^The list with inserted items is displayed$")
     public void the_list_with_inserted_items_is_displayed() {
         List<Map<String, String>> lst = this.lstKeyword.asMaps(String.class, String.class);
-        ArrayList<String> lstKeyword = new ArrayList<>();
+        ArrayList<String> lstKeyword = new ArrayList<String>();
         for(Map<String, String> s: lst)
         {
             lstKeyword.add(s.get("item"));
         }
 
-        ArrayList<String> lstDisplayedResult = new ArrayList<>();
+        ArrayList<String> lstDisplayedResult = new ArrayList<String>();
         List<WebElement> lstEl = todoPage.lstItems;
         for(WebElement el: lstEl)
         {

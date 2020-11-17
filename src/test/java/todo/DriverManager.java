@@ -3,6 +3,9 @@ package todo;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.config.DriverManagerType;
+import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,7 +17,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver> ();
 
     private static enum Browser {
         FIREFOX,
@@ -24,7 +27,7 @@ public class DriverManager {
         IOS
     }
 
-    public static WebDriver createInstance(String browserName) throws MalformedURLException {
+    public static WebDriver createInstance(String browserName) throws MalformedURLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
         WebDriver driver;
         browserName = (browserName != null) ? browserName : "firefox";
         String version = System.getProperty("version");
@@ -56,10 +59,11 @@ public class DriverManager {
                 driver = new InternetExplorerDriver();
                 break;
             case CHROME:
-                System.setProperty("webdriver.chrome.driver", "/Users/khanhtran/Downloads/chromedriver");
+                System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
                 driver = new ChromeDriver();
                 break;
             default:
+                WebDriverManager.firefoxdriver().setup();
                 System.setProperty("webdriver.gecko.driver", "/Users/khanhtran/Downloads/geckodriver");
                 driver = new FirefoxDriver();
                 break;
@@ -75,6 +79,12 @@ public class DriverManager {
             try {
                 setWebDriver(createInstance(browserName));
             } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
