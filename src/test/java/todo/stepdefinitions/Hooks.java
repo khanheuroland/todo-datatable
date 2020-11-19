@@ -13,18 +13,20 @@ public class Hooks {
     @Before
     public void Before()
     {
-
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver-2");
+        driver = new ChromeDriver();
     }
 
     @After
     public void After(Scenario scenario)
     {
-        WebDriver driver = DriverManager.getDriver();
+        //WebDriver driver = DriverManager.getDriver();
         if(scenario.isFailed())
         {
             final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             scenario.embed (screenshot, "image/png");
         }
-        DriverManager.closeWebDriver();
+        //DriverManager.closeWebDriver();
+        driver.quit();
     }
 }
