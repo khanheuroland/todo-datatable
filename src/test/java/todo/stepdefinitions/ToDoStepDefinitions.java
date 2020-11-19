@@ -23,7 +23,7 @@ public class ToDoStepDefinitions {
     DataTable lstKeyword;
     public ToDoStepDefinitions()
     {
-        this.driver = DriverManager.getDriver();
+        this.driver = Hooks.driver;//DriverManager.getDriver();
         this.todoPage = new TodoPage(this.driver);
     }
 
