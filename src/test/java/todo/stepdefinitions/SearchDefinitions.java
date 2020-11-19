@@ -14,7 +14,7 @@ public class SearchDefinitions {
     GoogleSearchPage googlePage;
     public SearchDefinitions()
     {
-        this.driver = DriverManager.getDriver();
+        this.driver = Hooks.driver;
     }
 
     @Given("^The user is staying at google homepage$")
