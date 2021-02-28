@@ -15,7 +15,7 @@ public class Hooks {
     @Before
     public void Before()
     {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver-2");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
         driver = new ChromeDriver();
     }
 
